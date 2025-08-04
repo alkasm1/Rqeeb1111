@@ -1,0 +1,47 @@
+import React, { useState } from "react"; import { Button } from "@/components/ui/button"; import { Card, CardContent } from "@/components/ui/card"; import { Dialog, DialogTrigger, DialogContent } from "@/components/ui/dialog"; import { Globe, ShieldCheck, Image as ImageIcon } from "lucide-react";
+
+export default function HomePage() { const [lang, setLang] = useState("ar");
+
+const t = { ar: { title: "رقيب لكشف التزوير", subtitle: "حل ذكي لتحليل الصور والمستندات ومكافحة التزوير", start: "ابدأ التحليل الآن", single: "تحليل صورة واحدة", dual: "مقارنة صورتين", contact: "للتواصل: shamwebs1@gmail.com", }, en: { title: "RQEEB - Forgery Detection", subtitle: "Smart tool to analyze documents, images, and detect forgery", start: "Start Analysis", single: "Single Image Analysis", dual: "Compare Two Images", contact: "Contact: shamwebs1@gmail.com", }, }[lang];
+
+return ( <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-6 space-y-6"> <div className="flex justify-end w-full max-w-4xl"> <Button variant="ghost" onClick={() => setLang(lang === "ar" ? "en" : "ar")}>{lang === "ar" ? "English" : "العربية"}</Button> </div>
+
+<Card className="bg-zinc-900 text-center shadow-xl rounded-2xl p-10 max-w-2xl">
+    <CardContent>
+      <div className="flex justify-center mb-4">
+        <ShieldCheck size={64} />
+      </div>
+      <h1 className="text-4xl font-bold mb-4">{t.title}</h1>
+      <p className="text-lg text-zinc-300 mb-6">{t.subtitle}</p>
+
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button className="text-xl px-6 py-3 bg-orange-500 hover:bg-orange-600 rounded-xl">
+            {t.start}
+          </Button>
+        </DialogTrigger>
+        <DialogContent className="bg-white text-black text-center">
+          <h2 className="text-xl font-semibold mb-4">{t.start}</h2>
+          <div className="flex flex-col space-y-4">
+            <a href="/check.html">
+              <Button variant="outline" className="w-full text-base">
+                <ImageIcon className="mr-2" /> {t.single}
+              </Button>
+            </a>
+            <a href="/compare.html">
+              <Button variant="outline" className="w-full text-base">
+                <Globe className="mr-2" /> {t.dual}
+              </Button>
+            </a>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      <p className="mt-8 text-sm text-zinc-400">{t.contact}</p>
+      <p className="text-xs text-zinc-500">Developed by Raafat Omar</p>
+    </CardContent>
+  </Card>
+</div>
+
+); }
+
