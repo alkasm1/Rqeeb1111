@@ -615,7 +615,49 @@
       </div>
     </footer>
   </div>
-  
+  <!doctype html>
+<html lang="ar">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RQEEB — مقارنة مستندات</title>
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- CDN المكتبات -->
+  <!-- لاحظ: opencv.js أحيانًا يحتاج تحميل محلي داخل Worker. جرب CDN أولًا. -->
+  <script async src="https://cdn.jsdelivr.net/npm/tesseract.js@4.1.1/dist/tesseract.min.js"></script>
+  <script async src="https://docs.opencv.org/4.x/opencv.js" type="text/javascript"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>RQEEB — مقارنة و كشف التعديلات</h1>
+
+    <div class="uploader">
+      <label>الملف A
+        <input id="fileA" type="file" accept="image/*,.pdf" />
+      </label>
+      <label>الملف B
+        <input id="fileB" type="file" accept="image/*,.pdf" />
+      </label>
+    </div>
+
+    <div class="controls">
+      <button id="runGate">فحص مبدئي (Advanced1)</button>
+      <button id="runHeavy">تشغيل التحليل المتقدّم 2</button>
+      <div id="status">جاهز</div>
+    </div>
+
+    <div class="result-panel">
+      <div class="summary" id="summary"></div>
+      <canvas id="canvasOverlay"></canvas>
+      <div id="details"></div>
+    </div>
+
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
   <script>
     // تنبيه عند اختيار الصور من الكاميرا أو الجهاز
     ['originalCamera','originalFile','checkCamera','checkFile'].forEach(id => {
